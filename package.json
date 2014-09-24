@@ -1,0 +1,12 @@
+{
+  "name": "hello-world",
+  "bin": {
+    "hello-world": "bin/hello-world.sh"
+  },
+  "scripts": {
+    "test": "echo \"No tests available\" && exit 1"
+  },
+  "version": "0.0.0",
+  "author": "Mobiquity developers",
+  "license": "Copyright (C) Mobiquity Inc - All Rights Reserved \nUnauthorized copying of this file, via any medium is strictly prohibited\nProprietary and confidential"
+}
