@@ -1,0 +1,5 @@
+{
+    "platform": "android",
+    "name": "fire_android",
+    "description": "Gradle template for android"
+}
