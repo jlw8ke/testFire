@@ -1,36 +1,17 @@
 {
-  "name": "generator-fire-android",
-  "version": "0.0.0",
-  "description": "Yeoman generator",
-  "license": "MIT",
-  "main": "app/index.js",
-  "repository": "jlw8ke/generator-fire-android",
-  "author": {
-    "name": "Justin Washington",
-    "email": "jlw8ke@live.com",
-    "url": "https://github.com/jlw8ke"
-  },
-  "engines": {
-    "node": ">=0.10.0"
-  },
+  "name": "generator-fire_android",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "files": [
-    "app"
-  ],
   "keywords": [
     "yeoman-generator"
   ],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "yeoman-generator": "^0.17.0",
-    "chalk": "^0.5.0",
-    "yosay": "^0.3.0"
-  },
-  "devDependencies": {
-    "mocha": "*"
-  },
-  "peerDependencies": {
-    "yo": ">=1.0.0"
+    "yeoman-generator": "^0.17.3"
   }
 }
