@@ -26,7 +26,7 @@ echo "configuring gradle.properties"
 FILE=$path/gradle.properties
 sdk_version=${target:8}
 min_sdk_version=${min_target:8}
-echo "APPLICATON_ID=$package" >> $FILE
+echo "APPLICATION_ID=$package" >> $FILE
 echo "ANDROID_BUILD_MIN_SDK_VERSION=$min_sdk_version" >> $FILE
 echo "ANDROID_BUILD_TARGET_SDK_VERSION=$sdk_version" >> $FILE
 echo "ANDROID_BUILD_TOOLS_VERSION=20.0.0" >> $FILE
