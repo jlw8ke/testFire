@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - '0.10'
+before_install:
+  - currentfolder=${PWD##*/}
+  - if [ "$currentfolder" != 'generator-fire-android' ]; then cd .. && eval "mv $currentfolder generator-fire-android" && cd generator-fire-android; fi
+
