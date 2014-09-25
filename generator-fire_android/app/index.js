@@ -7,6 +7,7 @@ module.exports = yeoman.generators.Base.extend({
 	promptTask: function () {
 		self = this
 		var done = this.async()
+		var currentName
 		this.log("Initializing Android Gradle project")
 
 		this.prompt([{
@@ -15,6 +16,7 @@ module.exports = yeoman.generators.Base.extend({
 			message : 'Project name: ',
 			validate : function(input) {
 				var done = this.async();
+				currentName = input
 				setTimeout(function() {
 					if (!input) {
 						done("A project name is required");
@@ -52,19 +54,87 @@ module.exports = yeoman.generators.Base.extend({
 				}, 10);
 			}		
 		}, {
-			type : 'input',
+			type : 'list',
 			name : 'target',
 			message : 'Build target: ',
-			validate : function(input) {
-				var done = this.async();
-				setTimeout(function() {
-					if (!input) {
-						done("A project target is required");
-						return;
-					}
-					done(true);
-				}, 10);
-			}		
+			choices: [
+				{
+					name: "Android 4.0",
+					value: "android-14"
+				},
+				{
+					name: "Android 4.0.3",
+					value: "android-15"
+				},
+				{
+					name: "Android 4.1.2",
+					value: "android-16"
+				},
+				{
+					name: "Android 4.2.2",
+					value: "android-17"
+				},
+				{
+					name: "Android 4.3",
+					value: "android-18"
+				},
+				{
+					name: "Android 4.4.2",
+					value: "android-19"
+				},
+				{
+					name: "Android 4.4W",
+					value: "android-20"
+				},
+				{
+					name: "Android L (preview)",
+					value: "android-L"
+				}
+			]		
+		}, {
+			type : 'list',
+			name : 'min_target',
+			message : 'Minimum sdkt: ',
+			choices: [
+				{
+					name: "Android 4.0",
+					value: "android-14"
+				},
+				{
+					name: "Android 4.0.3",
+					value: "android-15"
+				},
+				{
+					name: "Android 4.1.2",
+					value: "android-16"
+				},
+				{
+					name: "Android 4.2.2",
+					value: "android-17"
+				},
+				{
+					name: "Android 4.3",
+					value: "android-18"
+				},
+				{
+					name: "Android 4.4.2",
+					value: "android-19"
+				},
+				{
+					name: "Android 4.4W",
+					value: "android-20"
+				},
+				{
+					name: "Android L (preview)",
+					value: "android-L"
+				}
+			]		
+		}, 
+		{
+			type : 'input',
+			name : 'activity',
+			message : 'Main Activity: ',
+			default : "MainActivity"
 		}], function (answers) {
 			createAndroidProject(answers)
 			done()
@@ -75,10 +145,9 @@ module.exports = yeoman.generators.Base.extend({
 function createAndroidProject(params) {
 	self.log(params)
 	var file_loc = path.join(__dirname, "init_android.sh")
-	self.log("Script location : " + file_loc)
 	var init_android = spawn(file_loc, 
-		[params.name, params.path, params.package, params.target])	
+		[params.name, params.path, params.package, params.target, params.min_target, params.activity])	
 	init_android.stdout.on('data', function (data) {
-  		console.log('stdout: ' + data);
+  		console.log('' + data);
 	})
 }
