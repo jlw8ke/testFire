@@ -7,15 +7,18 @@ target=$4
 min_target=$5
 activity=$6
 
+echo "creating the android project"
 android create project --name $name --path $path --package $package --target $target --activity $activity -g -v 0.12.2
 
-# Fetch current gradle template
+echo "fetching the current gradle template"
 git clone -q git@github.com:Mobiquity/Mobsource_GradleTemplate_Android.git
 
+echo "creating gradle specific files"
 cp Mobsource_GradleTemplate_Android/settings.gradle $path/
 cp Mobsource_GradleTemplate_Android/.gitignore $path/
 cp Mobsource_GradleTemplate_Android/build.gradle $path/
 cp -r Mobsource_GradleTemplate_Android/scripts $path/scripts
+
 echo "creating app module"
 mkdir $path/app
 mv $path/src $path/app/

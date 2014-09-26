@@ -76,12 +76,19 @@ module.exports = yeoman.generators.Base.extend({
 
 function createAndroidProject(params) {
 	self.log(params)
-	var file_loc = path.join(__dirname, "init_android.sh")
+	var file_loc = path.join(__dirname, "init_android.sh");
 	var init_android = spawn(file_loc, 
-		[params.name, params.path, params.package, params.target, params.min_target, params.activity])	
+		[params.name, params.path, params.package, params.target, params.min_target, params.activity]);	
 	init_android.stdout.on('data', function (data) {
   		console.log('' + data);
-	})
+	});
+	init_android.stderr.on('data', function (data) {
+  		console.log('stderr: ' + data);
+	});
+
+	init_android.on('close', function (code) {
+  		console.log('successfully created android template');
+	});
 }
 
 function findAvailableTargets() {
@@ -96,7 +103,7 @@ function findAvailableTargets() {
   			var name = lines[i+1].trim().substring(5)
   			var target = new Object()
   			target.name=name.trim()
-  			target.value=value[1].trim()
+  			target.value=JSON.parse(value[1].trim())
   			targets.push(target)
   		}  		
 	});
