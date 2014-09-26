@@ -2,8 +2,7 @@ var yeoman = require('yeoman-generator'),
 spawn = require('child_process').spawn,
 path = require("path"),
 self,
-targets,
-projectName
+targets
 
 module.exports = yeoman.generators.Base.extend({
 	generateTargetsTask: function() {
@@ -38,14 +37,19 @@ module.exports = yeoman.generators.Base.extend({
 			name : 'package',
 			message : 'Project package:',
 			validate : function(input) {
-				var done = this.async();
+				var done = this.async()
 				setTimeout(function() {
 					if (!input) {
-						done("A project package is required");
-						return;
+						done("A project package is required")
+						return
 					}
-					done(true);
-				}, 10);
+					var pass = input.match("^([a-z|A-Z])+\.([a-z|A-Z])+\.([a-z|A-Z]|[^\.])+$")
+					if(!pass) {
+						done("Please enter a valid package.  Must be in the form: your.package.name")
+						return
+					}
+					done(true)
+				}, 10)
 			}		
 		}, {
 			type : 'list',
